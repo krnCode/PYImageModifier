@@ -4,6 +4,7 @@ import os
 
 # 1 - Access the folder containing the files that you want to modify
 rawDir = r'C:\Users\conta\Pictures\Wallpapers'
+
 # 2 - Set the folder to save the modified images
 modDir = r'C:\Users\conta\Pictures\WallsConverted'
 
@@ -25,6 +26,11 @@ for rawImage in os.listdir(rawDir):
     img_contour.save(modDir + '/' + rawImage[:-4] + '-contour.jpg')
     img_detail = rgbImg.filter(ImageFilter.DETAIL)
     img_detail.save(modDir + '/' + rawImage[:-4] + '-detail.jpg')
+    img_findEdges = rgbImg.filter(ImageFilter.FIND_EDGES)
+    img_findEdges.save(modDir + '/' + rawImage[:-4] + '-findEdges.jpg')
+    img_edgeEnchanceMore = rgbImg.filter(ImageFilter.EDGE_ENHANCE_MORE)
+    img_edgeEnchanceMore.save(
+        modDir + '/' + rawImage[:-4] + '-edgeEnhanceMore.jpg')
     # img_emboss = rgbImg.filter(ImageFilter.EMBOSS)
     # img_emboss.save(modDir + '/' + rawImage[:-4] + '-emboss.jpg')
     print(f'{rawImage} done!')
