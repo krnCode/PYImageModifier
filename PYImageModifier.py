@@ -1,6 +1,9 @@
 from PIL import Image
 from PIL import ImageFilter
+from datetime import datetime
 import os
+
+time_start = datetime.now()
 
 # 1 - Access the folder containing the files that you want to modify
 rawDir = r'C:\Users\conta\Pictures\Wallpapers'
@@ -14,6 +17,7 @@ if os.path.exists(modDir) == False:
 
 # 4 - Choose the filters to apply (comment out filters you don't want)
 for rawImage in os.listdir(rawDir):
+    start = datetime.now()
     img = Image.open(rawDir + "/" + str(rawImage))
     rgbImg = img.convert('RGB')
     img_sharpen = rgbImg.filter(ImageFilter.SHARPEN)
@@ -33,7 +37,12 @@ for rawImage in os.listdir(rawDir):
         modDir + '/' + rawImage[:-4] + '-edgeEnhanceMore.jpg')
     # img_emboss = rgbImg.filter(ImageFilter.EMBOSS)
     # img_emboss.save(modDir + '/' + rawImage[:-4] + '-emboss.jpg')
-    print(f'{rawImage} done!')
+    end = datetime.now()
+    print(f'{rawImage} done in {end - start}!')
+
+time_end = datetime.now()
 
 # 5 - Print message telling that everything is done
-print('All done! Check the folder to see your modified images')
+print(
+    f'All done! The process took {time_end - time_start} in total to finish.' '\n'
+    'Check the folder to see your modified images')
